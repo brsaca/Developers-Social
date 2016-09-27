@@ -14,6 +14,11 @@
 		8522D5881D9B26D300CA701D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8522D5871D9B26D300CA701D /* Assets.xcassets */; };
 		8522D58B1D9B26D300CA701D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8522D5891D9B26D300CA701D /* LaunchScreen.storyboard */; };
 		8522D5931D9B272A00CA701D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8522D5921D9B272A00CA701D /* GoogleService-Info.plist */; };
+		8522D5981D9B344D00CA701D /* FancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D5971D9B344D00CA701D /* FancyView.swift */; };
+		8522D59B1D9B34E800CA701D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D59A1D9B34E800CA701D /* Constants.swift */; };
+		8522D59D1D9B367A00CA701D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D59C1D9B367A00CA701D /* RoundButton.swift */; };
+		8522D59F1D9B37F300CA701D /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D59E1D9B37F300CA701D /* FancyField.swift */; };
+		8522D5A11D9B392800CA701D /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D5A01D9B392800CA701D /* FancyButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,11 @@
 		8522D58A1D9B26D300CA701D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8522D58C1D9B26D300CA701D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8522D5921D9B272A00CA701D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8522D5971D9B344D00CA701D /* FancyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyView.swift; sourceTree = "<group>"; };
+		8522D59A1D9B34E800CA701D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8522D59C1D9B367A00CA701D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		8522D59E1D9B37F300CA701D /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
+		8522D5A01D9B392800CA701D /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		ABBC9CC90000B84E67C4E708 /* Pods_Developers_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Developers_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,6 +81,7 @@
 		8522D57F1D9B26D200CA701D /* Developers Social */ = {
 			isa = PBXGroup;
 			children = (
+				8522D5991D9B34DA00CA701D /* Util */,
 				8522D5961D9B2AEF00CA701D /* Controller */,
 				8522D5951D9B2AEB00CA701D /* View */,
 				8522D5941D9B2AE500CA701D /* Model */,
@@ -94,6 +105,10 @@
 		8522D5951D9B2AEB00CA701D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8522D5971D9B344D00CA701D /* FancyView.swift */,
+				8522D59C1D9B367A00CA701D /* RoundButton.swift */,
+				8522D59E1D9B37F300CA701D /* FancyField.swift */,
+				8522D5A01D9B392800CA701D /* FancyButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -104,6 +119,14 @@
 				8522D5821D9B26D200CA701D /* SignInVC.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		8522D5991D9B34DA00CA701D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8522D59A1D9B34E800CA701D /* Constants.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		9AE5216C99384569AF16D011 /* Pods */ = {
@@ -240,8 +263,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8522D59F1D9B37F300CA701D /* FancyField.swift in Sources */,
 				8522D5831D9B26D200CA701D /* SignInVC.swift in Sources */,
+				8522D59D1D9B367A00CA701D /* RoundButton.swift in Sources */,
+				8522D5A11D9B392800CA701D /* FancyButton.swift in Sources */,
 				8522D5811D9B26D200CA701D /* AppDelegate.swift in Sources */,
+				8522D5981D9B344D00CA701D /* FancyView.swift in Sources */,
+				8522D59B1D9B34E800CA701D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
