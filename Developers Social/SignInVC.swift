@@ -11,18 +11,44 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
 
-class SignInVC: UIViewController {
+class SignInVC: UIViewController,UITextFieldDelegate {
 
+    @IBOutlet weak var emailField: FancyField!
+    
+    @IBOutlet weak var passField: FancyField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //MARK: Keyboard
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveTextfield(textfield: textField, moveDistance: -100, up: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveTextfield(textfield: textField, moveDistance: -100, up: false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func moveTextfield(textfield:UITextField, moveDistance: Int, up: Bool){
+        let moveDuration = 0.3
+        let movement:CGFloat = CGFloat(up ? moveDistance : -moveDistance)
+        
+        UIView.beginAnimations("animateTextField",context:nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(moveDuration)
+        self.view.frame = self.view.frame.offsetBy(dx:0,dy:movement)
+        UIView.commitAnimations()
+        
     }
 
+    //MARK: -IBAction
     @IBAction func facebookBtnPressed(_ sender: AnyObject) {
         
         let facebookLogin = FBSDKLoginManager()
@@ -34,19 +60,34 @@ class SignInVC: UIViewController {
             } else {
                 print("BSC:: Successfully auth FaceBook")
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                self.firebaseAuth(credential)
+                AuthService.instance.loginWithCredential(credential, onComplete: { (errMsg, data) in
+                    guard errMsg == nil else {
+                        let alert = UIAlertController(title: "Error Authentication", message: errMsg, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(alert, animated:true, completion:nil)
+                        return
+                    }
+                })
             }
         }
     }
     
-    func firebaseAuth(_ credential: FIRAuthCredential){
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-            if error != nil {
-                print ("BSC:: " + error.debugDescription)
-            } else {
-                print ("BSC:: successfully auth Firebase")
-            }
-        })
+    @IBAction func signInBtnPressed(_ sender: AnyObject) {
+        if let email = emailField.text, let pass = passField.text , (email.characters.count > 0 && pass.characters.count > 0){
+            AuthService.instance.loginWithEmail(email: email, password: pass, onComplete: { (errMsg, data) in
+                guard errMsg == nil else {
+                    let alert = UIAlertController(title: "Error Authentication", message: errMsg, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated:true, completion:nil)
+                    return
+                }
+            })
+        }else{
+            let alert = UIAlertController(title: "Username and Password required", message: "You must enter both a username and a password", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
+    
 }
 

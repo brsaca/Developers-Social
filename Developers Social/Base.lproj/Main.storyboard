@@ -78,11 +78,17 @@
                                         <color key="textColor" red="0.27843137254901962" green="0.35686274509803922" blue="0.62352941176470589" alpha="0.87" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="9TV-Tf-TxO"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bsh-Vq-eJo" customClass="FancyField" customModule="Developers_Social" customModuleProvider="target">
                                         <color key="textColor" red="0.2784313725" green="0.35686274509999999" blue="0.62352941179999999" alpha="0.87" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="lz9-j2-aSA"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxz-We-rdh" customClass="FancyButton" customModule="Developers_Social" customModuleProvider="target">
                                         <color key="backgroundColor" red="0.8666666666666667" green="0.17254901960784313" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
@@ -90,6 +96,9 @@
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signInBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f2R-xa-8Io"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -112,6 +121,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="qTb-Tk-Y6p" secondAttribute="trailing" constant="30" id="u1K-fi-gtC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="nVf-qN-HK7" id="dif-Ev-gJx"/>
+                        <outlet property="passField" destination="Bsh-Vq-eJo" id="ts4-XR-87R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

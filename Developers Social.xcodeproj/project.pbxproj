@@ -19,6 +19,7 @@
 		8522D59D1D9B367A00CA701D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D59C1D9B367A00CA701D /* RoundButton.swift */; };
 		8522D59F1D9B37F300CA701D /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D59E1D9B37F300CA701D /* FancyField.swift */; };
 		8522D5A11D9B392800CA701D /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D5A01D9B392800CA701D /* FancyButton.swift */; };
+		85667AAD1DA5BDFE00938B22 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85667AAC1DA5BDFE00938B22 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		8522D59C1D9B367A00CA701D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		8522D59E1D9B37F300CA701D /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
 		8522D5A01D9B392800CA701D /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
+		85667AAC1DA5BDFE00938B22 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		ABBC9CC90000B84E67C4E708 /* Pods_Developers_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Developers_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 		8522D57F1D9B26D200CA701D /* Developers Social */ = {
 			isa = PBXGroup;
 			children = (
+				85667AAB1DA5BDCE00938B22 /* Services */,
 				8522D5991D9B34DA00CA701D /* Util */,
 				8522D5961D9B2AEF00CA701D /* Controller */,
 				8522D5951D9B2AEB00CA701D /* View */,
@@ -127,6 +130,14 @@
 				8522D59A1D9B34E800CA701D /* Constants.swift */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		85667AAB1DA5BDCE00938B22 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				85667AAC1DA5BDFE00938B22 /* AuthService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		9AE5216C99384569AF16D011 /* Pods */ = {
@@ -270,6 +281,7 @@
 				8522D5811D9B26D200CA701D /* AppDelegate.swift in Sources */,
 				8522D5981D9B344D00CA701D /* FancyView.swift in Sources */,
 				8522D59B1D9B34E800CA701D /* Constants.swift in Sources */,
+				85667AAD1DA5BDFE00938B22 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
