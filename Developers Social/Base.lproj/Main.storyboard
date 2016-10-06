@@ -198,6 +198,9 @@
                                                     <constraint firstAttribute="height" constant="49" id="gxc-Ck-eXD"/>
                                                 </constraints>
                                                 <state key="normal" image="add-post"/>
+                                                <connections>
+                                                    <action selector="postBtnPressed:" destination="ZpE-yP-TdU" eventType="touchUpInside" id="3ak-ES-eMh"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -223,19 +226,19 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="293" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Awb-aE-RMl">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="293" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Awb-aE-RMl">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="293" id="8wg-Wl-qfG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="293" id="8wg-Wl-qfG" customClass="FeedCell" customModule="Developers_Social" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="293"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8wg-Wl-qfG" id="zuz-WC-2bt">
-                                            <frame key="frameInset" width="320" height="292.5"/>
+                                            <frame key="frameInset" width="320" height="293"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8c-Eg-aKG" customClass="FancyView" customModule="Developers_Social" customModuleProvider="target">
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sYa-wy-kD1">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="sYa-wy-kD1">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="120" id="5vw-um-sXv"/>
                                                             </constraints>
@@ -269,7 +272,7 @@
                                                                 <constraint firstItem="SBG-md-Mtr" firstAttribute="leading" secondItem="H9a-fz-Slp" secondAttribute="leading" id="eLB-jH-LUW"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icZ-W2-Yk2">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icZ-W2-Yk2">
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="gyE-6y-4Aw"/>
@@ -319,6 +322,13 @@
                                                 <constraint firstItem="r8c-Eg-aKG" firstAttribute="leading" secondItem="zuz-WC-2bt" secondAttribute="leading" constant="16" id="y3b-6x-MMJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionText" destination="icZ-W2-Yk2" id="c9y-7A-re7"/>
+                                            <outlet property="likesLbl" destination="Cp3-iQ-Vqe" id="acP-Jd-xXw"/>
+                                            <outlet property="postImg" destination="sYa-wy-kD1" id="fVK-oM-q8x"/>
+                                            <outlet property="profileImg" destination="SBG-md-Mtr" id="6QX-9o-kP0"/>
+                                            <outlet property="usernameLbl" destination="3IH-Jn-9V6" id="hVJ-zT-zXp"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -338,6 +348,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="captionField" destination="vdr-hV-utr" id="PLW-gy-5cf"/>
+                        <outlet property="tableView" destination="Awb-aE-RMl" id="bcg-lI-Fb5"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="SignInVC" id="g32-gD-Kjq"/>
                     </connections>
                 </viewController>
@@ -352,6 +364,7 @@
         <image name="devslopes-logo" width="150" height="94"/>
         <image name="empty-heart" width="70" height="70"/>
         <image name="f" width="352" height="328"/>
+        <image name="placeholder" width="567" height="312"/>
         <image name="profile" width="113" height="155"/>
         <image name="sign-out" width="92" height="65"/>
     </resources>

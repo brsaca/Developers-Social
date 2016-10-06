@@ -10,10 +10,15 @@ import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var captionField: FancyField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +33,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: SEGUE_SIGNINVC, sender: nil)
     }
 
+    @IBAction func postBtnPressed(_ sender: AnyObject) {
+    }
+    
+    //MARK: -TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -37,7 +46,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        return tableView.dequeueReusableCell(withIdentifier: "cell") as! FeedCell
     }
     
     
