@@ -10,3 +10,7 @@ import Foundation
 import UIKit
 
 let SHADOW_GRAY: CGFloat = 120.0 / 155.0
+
+let KEY_UID = "userID"
+let SEGUE_FEEDVC = "FeedVC"
+let SEGUE_SIGNINVC = "SignInVC"

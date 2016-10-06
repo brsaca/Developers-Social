@@ -8,11 +8,12 @@
 
 import Foundation
 import FirebaseAuth
+import SwiftKeychainWrapper
 
 typealias Completion = (_ errMsg: String?, _ data:AnyObject?)-> Void
 
 class AuthService{
-    private static let _instance = AuthService()
+    fileprivate static let _instance = AuthService()
     
     static var instance:AuthService{
         return _instance
@@ -22,29 +23,31 @@ class AuthService{
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             if error != nil {
                 print ("loginWithCredential Error:: " + error.debugDescription)
-                self.handleFirebaseError(error: error as! NSError, onComplete: onComplete)
+                self.handleFirebaseError(error as! NSError, onComplete: onComplete)
             } else {
                 print ("BSC:: successfully auth Firebase")
+                self.saveUserInKeychain((user?.uid)!)
                 onComplete?(nil,user)
             }
         })
     }
     
-    func loginWithEmail(email:String, password:String, onComplete:Completion?){
+    func loginWithEmail(_ email:String, password:String, onComplete:Completion?){
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 if let errorCode = FIRAuthErrorCode(rawValue:error!._code){
                     if errorCode == .errorCodeUserNotFound {
                         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                             if error != nil {
-                                self.handleFirebaseError(error: error as! NSError, onComplete: onComplete)
+                                self.handleFirebaseError(error as! NSError, onComplete: onComplete)
                             }else{
                                 if user?.uid != nil {
                                     //Sign in
                                     FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
                                         if error != nil{
-                                            self.handleFirebaseError(error: error as! NSError, onComplete: onComplete)
+                                            self.handleFirebaseError(error as! NSError, onComplete: onComplete)
                                         }else{
+                                            self.saveUserInKeychain((user?.uid)!)
                                             onComplete?(nil,user)
                                         }
                                     })
@@ -53,7 +56,7 @@ class AuthService{
                         })
                     }
                 }else{
-                    self.handleFirebaseError(error: error as! NSError, onComplete: onComplete)
+                    self.handleFirebaseError(error as! NSError, onComplete: onComplete)
                 }
             }else{
                 //Successfully logged in
@@ -62,7 +65,7 @@ class AuthService{
         })
     }
     
-    func handleFirebaseError(error:NSError, onComplete:Completion?){
+    func handleFirebaseError(_ error:NSError, onComplete:Completion?){
         print(error.debugDescription)
         if let errorCode = FIRAuthErrorCode(rawValue: error.code){
             switch errorCode {
@@ -84,6 +87,15 @@ class AuthService{
                 break
             }
         }
+    }
+    
+    func saveUserInKeychain(_ userID: String){
+         KeychainWrapper.standard.set(userID, forKey: KEY_UID)
+    }
+    
+    func signOut(){
+        try! FIRAuth.auth()?.signOut()
+        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
     }
     
 }

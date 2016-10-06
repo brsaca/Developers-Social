@@ -20,6 +20,7 @@
 		8522D59F1D9B37F300CA701D /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D59E1D9B37F300CA701D /* FancyField.swift */; };
 		8522D5A11D9B392800CA701D /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8522D5A01D9B392800CA701D /* FancyButton.swift */; };
 		85667AAD1DA5BDFE00938B22 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85667AAC1DA5BDFE00938B22 /* AuthService.swift */; };
+		856F8B9A1DA6B6680082FA52 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856F8B991DA6B6680082FA52 /* FeedVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		8522D59E1D9B37F300CA701D /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
 		8522D5A01D9B392800CA701D /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		85667AAC1DA5BDFE00938B22 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		856F8B991DA6B6680082FA52 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		ABBC9CC90000B84E67C4E708 /* Pods_Developers_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Developers_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				8522D5821D9B26D200CA701D /* SignInVC.swift */,
+				856F8B991DA6B6680082FA52 /* FeedVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 					8522D57C1D9B26D200CA701D = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3RQAYNAD56;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -274,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				856F8B9A1DA6B6680082FA52 /* FeedVC.swift in Sources */,
 				8522D59F1D9B37F300CA701D /* FancyField.swift in Sources */,
 				8522D5831D9B26D200CA701D /* SignInVC.swift in Sources */,
 				8522D59D1D9B367A00CA701D /* RoundButton.swift in Sources */,

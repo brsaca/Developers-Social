@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController,UITextFieldDelegate {
 
@@ -19,16 +20,21 @@ class SignInVC: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID){
+            performSegue(withIdentifier: "FeedVC", sender: nil)
+        }
     }
     
     //MARK: Keyboard
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        moveTextfield(textfield: textField, moveDistance: -100, up: true)
+        moveTextfield(textField, moveDistance: -100, up: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        moveTextfield(textfield: textField, moveDistance: -100, up: false)
+        moveTextfield(textField, moveDistance: -100, up: false)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -36,7 +42,7 @@ class SignInVC: UIViewController,UITextFieldDelegate {
         return true
     }
     
-    func moveTextfield(textfield:UITextField, moveDistance: Int, up: Bool){
+    func moveTextfield(_ textfield:UITextField, moveDistance: Int, up: Bool){
         let moveDuration = 0.3
         let movement:CGFloat = CGFloat(up ? moveDistance : -moveDistance)
         
@@ -61,11 +67,12 @@ class SignInVC: UIViewController,UITextFieldDelegate {
                 print("BSC:: Successfully auth FaceBook")
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                 AuthService.instance.loginWithCredential(credential, onComplete: { (errMsg, data) in
-                    guard errMsg == nil else {
+                    if errMsg == nil {
+                        self.performSegue(withIdentifier: SEGUE_FEEDVC, sender: nil)
+                    } else {
                         let alert = UIAlertController(title: "Error Authentication", message: errMsg, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         self.present(alert, animated:true, completion:nil)
-                        return
                     }
                 })
             }
@@ -74,12 +81,13 @@ class SignInVC: UIViewController,UITextFieldDelegate {
     
     @IBAction func signInBtnPressed(_ sender: AnyObject) {
         if let email = emailField.text, let pass = passField.text , (email.characters.count > 0 && pass.characters.count > 0){
-            AuthService.instance.loginWithEmail(email: email, password: pass, onComplete: { (errMsg, data) in
-                guard errMsg == nil else {
+            AuthService.instance.loginWithEmail(email, password: pass, onComplete: { (errMsg, data) in
+                if errMsg == nil {
+                    self.performSegue(withIdentifier: SEGUE_FEEDVC, sender: nil)
+                }else{
                     let alert = UIAlertController(title: "Error Authentication", message: errMsg, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alert, animated:true, completion:nil)
-                    return
                 }
             })
         }else{
