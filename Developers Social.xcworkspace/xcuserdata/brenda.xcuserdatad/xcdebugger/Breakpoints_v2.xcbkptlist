@@ -70,7 +70,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Developers Social/SignInVC.swift"
@@ -81,44 +81,12 @@
             endingLineNumber = "85"
             landmarkName = "signInBtnPressed(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Developers_Social.SignInVC.signInBtnPressed (Swift.AnyObject) -&gt; ()"
-                  moduleName = "Developers Social"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/brenda/Documents/iphone/udemy/Developers%20Social/Developers%20Social/SignInVC.swift"
-                  timestampString = "497490260.291522"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "1108">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Developers_Social.SignInVC.(signInBtnPressed (Swift.AnyObject) -&gt; ()).(closure #1)"
-                  moduleName = "Developers Social"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/brenda/Documents/iphone/udemy/Developers%20Social/Developers%20Social/SignInVC.swift"
-                  timestampString = "497490260.357311"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Developers Social/SignInVC.swift"
@@ -134,7 +102,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Developers Social/SignInVC.swift"
@@ -145,6 +113,38 @@
             endingLineNumber = "84"
             landmarkName = "signInBtnPressed(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Developers_Social.SignInVC.signInBtnPressed (Swift.AnyObject) -&gt; ()"
+                  moduleName = "Developers Social"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brenda/Documents/iphone/udemy/Developers%20Social/Developers%20Social/SignInVC.swift"
+                  timestampString = "497496068.38346"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "1108">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Developers_Social.SignInVC.(signInBtnPressed (Swift.AnyObject) -&gt; ()).(closure #1)"
+                  moduleName = "Developers Social"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brenda/Documents/iphone/udemy/Developers%20Social/Developers%20Social/SignInVC.swift"
+                  timestampString = "497496068.385683"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -159,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "viewDidAppear(_:)"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -26,7 +26,7 @@ class AuthService{
                 self.handleFirebaseError(error as! NSError, onComplete: onComplete)
             } else {
                 print ("BSC:: successfully auth Firebase")
-                self.saveUserInKeychain((user?.uid)!)
+                self.saveUserInKeychain((user?.uid)!, isLoginWithFB: true)
                 onComplete?(nil,user)
             }
         })
@@ -47,7 +47,7 @@ class AuthService{
                                         if error != nil{
                                             self.handleFirebaseError(error as! NSError, onComplete: onComplete)
                                         }else{
-                                            self.saveUserInKeychain((user?.uid)!)
+                                            self.saveUserInKeychain((user?.uid)!, isLoginWithFB: false)
                                             onComplete?(nil,user)
                                         }
                                     })
@@ -89,7 +89,8 @@ class AuthService{
         }
     }
     
-    func saveUserInKeychain(_ userID: String){
+    func saveUserInKeychain(_ userID: String, isLoginWithFB: Bool){
+        DataService.instance.saveUser(uid: userID, isLoginWithFB: isLoginWithFB)
          KeychainWrapper.standard.set(userID, forKey: KEY_UID)
     }
     
