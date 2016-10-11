@@ -22,3 +22,8 @@ let FIR_CHILD_POSTS = "posts"
 let FIR_URL_STORAGE = "gs://developers-social.appspot.com/"
 let FIR_STORAGE_IMAGES = "images"
 
+let POST_CAPTION = "caption"
+let POST_LIKES = "likes"
+let POST_IMAGEURL = "imageUrl"
+
+

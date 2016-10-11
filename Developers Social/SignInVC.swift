@@ -22,9 +22,10 @@ class SignInVC: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID){
-            performSegue(withIdentifier: "FeedVC", sender: nil)
+           performSegue(withIdentifier: SEGUE_FEEDVC, sender: nil)
         }
     }
     

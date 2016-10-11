@@ -21,6 +21,8 @@ class FeedCell: UITableViewCell {
         // Initialization code
     }
 
-    
+    func setPost(post:Post){
+        
+    }
 
 }
