@@ -61,9 +61,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        return tableView.dequeueReusableCell(withIdentifier: "cell") as! FeedCell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? FeedCell {
+            cell.configetCell(post: posts[indexPath.row])
+            return cell
+        }
+        return FeedCell()
     }
     
     
