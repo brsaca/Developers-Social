@@ -20,7 +20,7 @@ let FIR_CHILD_USERS_PROVIDER = "provider"
 let FIR_CHILD_POSTS = "posts"
 
 let FIR_URL_STORAGE = "gs://developers-social.appspot.com/"
-let FIR_STORAGE_IMAGES = "images"
+let FIR_STORAGE_IMAGES = "post-pics"
 
 let POST_CAPTION = "caption"
 let POST_LIKES = "likes"
