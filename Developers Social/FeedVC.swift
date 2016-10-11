@@ -9,18 +9,23 @@
 import UIKit
 import Firebase
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var addImage: CircleView!
     @IBOutlet weak var captionField: FancyField!
     
     var posts = [Post]()
+    var imagePicker: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
         
         DataService.instance.postsRef.observe(.value, with: {(snapshot) in
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -51,6 +56,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func postBtnPressed(_ sender: AnyObject) {
     }
     
+    @IBAction func addImageTapped(_ sender: AnyObject) {
+        present(imagePicker, animated:true, completion:nil)
+    }
+    
     //MARK: -TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -68,7 +77,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return FeedCell()
     }
     
-    
+    //MARK: -ImagePicker
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            addImage.image = image
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
     
 
 }
