@@ -19,6 +19,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        DataService.instance.postsRef.observe(.value, with: {(snapshot) in
+            print (snapshot.value)
+        })
     }
 
     override func didReceiveMemoryWarning() {
