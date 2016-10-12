@@ -43,5 +43,10 @@ class DataService {
         usersRef.child(uid).updateChildValues(userData)
     }
     
+    func savePost(senderUID:String, mediaURL:URL, caption: String){
+        let pr: Dictionary<String, Any> = ["imageUrl":mediaURL.absoluteString,"likes": 0, "caption":caption]
+        postsRef.childByAutoId().setValue(pr)
+    }
+    
     
 }

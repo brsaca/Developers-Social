@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addImage: CircleView!
@@ -28,8 +28,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
+        captionField.delegate = self
+        
         DataService.instance.postsRef.observe(.value, with: {(snapshot) in
             if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                self.posts.removeAll()
                 for snap in snapshots {
                     print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
@@ -47,21 +50,49 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
-    //MARK: -IBAction
+    //MARK: IBAction
     @IBAction func signOutBtnPressed(_ sender: AnyObject) {
         AuthService.instance.signOut()
         performSegue(withIdentifier: SEGUE_SIGNINVC, sender: nil)
     }
 
     @IBAction func postBtnPressed(_ sender: AnyObject) {
+        guard let caption = captionField.text, caption != "" else {
+            print("BSC:: Caption must be entered")
+            return
+        }
+        
+        guard let img = addImage.image else {
+            print("BSC:: An image must be selected")
+            return
+        }
+        
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            let snapName = "\(NSUUID().uuidString).jpg"
+            let ref = DataService.instance.imagesStorageRef.child(snapName)
+            
+            _ = ref.put(imgData, metadata: nil, completion: { (meta:FIRStorageMetadata?, err:Error?) in
+                if err != nil {
+                    print("Error uploading snap: \(err?.localizedDescription)")
+                }else{
+                    let downloadURL = meta!.downloadURL()
+                    DataService.instance.savePost(senderUID: FIRAuth.auth()!.currentUser!.uid, mediaURL: downloadURL!, caption: caption)
+                }
+            })
+        }
     }
     
     @IBAction func addImageTapped(_ sender: AnyObject) {
         present(imagePicker, animated:true, completion:nil)
     }
     
-    //MARK: -TableView
+    //MARK: TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -83,7 +114,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         return FeedCell()
     }
     
-    //MARK: -ImagePicker
+    //MARK: ImagePicker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImage.image = image

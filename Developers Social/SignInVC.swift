@@ -55,7 +55,7 @@ class SignInVC: UIViewController,UITextFieldDelegate {
         
     }
 
-    //MARK: -IBAction
+    //MARK: IBAction
     @IBAction func facebookBtnPressed(_ sender: AnyObject) {
         
         let facebookLogin = FBSDKLoginManager()
