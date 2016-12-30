@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import SwiftKeychainWrapper
 
 class DataService {
     
@@ -23,6 +24,12 @@ class DataService {
     
     var usersRef:FIRDatabaseReference {
         return mainRef.child(FIR_CHILD_USERS)
+    }
+    
+    var currentUserRef:FIRDatabaseReference {
+        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
+        let user = usersRef.child(uid!)
+        return user        
     }
     
     var postsRef:FIRDatabaseReference {
@@ -47,6 +54,8 @@ class DataService {
         let pr: Dictionary<String, Any> = ["imageUrl":mediaURL.absoluteString,"likes": 0, "caption":caption]
         postsRef.childByAutoId().setValue(pr)
     }
+    
+    
     
     
 }

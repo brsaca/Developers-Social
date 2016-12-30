@@ -11,6 +11,7 @@ import Firebase
 
 class FeedCell: UITableViewCell {
 
+    @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var usernameLbl: UILabel!
     @IBOutlet weak var postImg: UIImageView!
@@ -18,14 +19,16 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var likesLbl: UILabel!
     
     var post: Post!
+    var likeRef: FIRDatabaseReference!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.likeBtn.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
     }
 
     func configetCell(post:Post, img: UIImage? = nil){
         self.post = post
+        likeRef = DataService.instance.currentUserRef.child("likes").child(post.postKey)
         likesLbl.text = "\(self.post.likes)"
         captionText.text = self.post.caption
         
@@ -47,6 +50,31 @@ class FeedCell: UITableViewCell {
                 }
             })
         }
+        
+        
+        likeRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.likeBtn.setImage(UIImage(named:"empty-heart"), for: .normal)
+            }else{
+                self.likeBtn.setImage(UIImage(named:"filled-heart"), for: .normal)
+            }
+        })
+        
+    }
+    
+    func likeTapped(){
+        likeRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.likeBtn.setImage(UIImage(named:"filled-heart"), for: .normal)
+                self.post.adjustLikes(addLike: true)
+                self.likeRef.setValue(true)
+            }else{
+                self.likeBtn.setImage(UIImage(named:"empty-heart"), for: .normal)
+                self.post.adjustLikes(addLike: false)
+                self.likeRef.removeValue()
+            }
+        })
     }
 
+    
 }
